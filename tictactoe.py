@@ -18,17 +18,17 @@ class TicTacToe:
     def get_random_first_player(self):
         return random.randint(0, 1)
 
-    # user inputs mark on board using the format of rows and then columns ie 1 1 for row 1 column 1
+    # user inputs mark on board using the format of rows and then columns (ie 1 1 for row 1 column 1)
     def fix_spot(self, row, col, player):
         self.board[row][col] = player
 
     # to determine which player wins
-    def is_player_win(self, player):
+    def did_player_win(self, player):
         win = None
 
         n = len(self.board)
 
-        # checking rows
+        # to check rows
         for i in range(n):
             win = True
             for j in range(n):
@@ -38,7 +38,7 @@ class TicTacToe:
             if win:
                 return win
 
-        # checking columns
+        # to check columns
         for i in range(n):
             win = True
             for j in range(n):
@@ -48,7 +48,7 @@ class TicTacToe:
             if win:
                 return win
 
-        # checking diagonals
+        # to check diagonals
         win = True
         for i in range(n):
             if self.board[i][i] != player:
@@ -100,20 +100,20 @@ class TicTacToe:
 
             self.show_board()
 
-            # taking user input
+            # to take user input
             row, col = list(
                 map(int, input("Enter row and column numbers to fix spot: ").split()))
             print()
 
-            # fixing the spot
+            # to fix the spot
             self.fix_spot(row - 1, col - 1, player)
 
-            # checking whether current player is won or not
-            if self.is_player_win(player):
+            # to check if current player won
+            if self.did_player_win(player):
                 print(f"Player {player} wins the game!")
                 break
 
-            # checking whether the game is draw or not
+            # to check if current player won
             if self.is_board_filled():
                 print("Match Draw!")
                 break
